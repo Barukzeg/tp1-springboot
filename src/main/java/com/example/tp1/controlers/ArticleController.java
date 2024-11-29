@@ -24,9 +24,15 @@ public class ArticleController {
         return articleRepository.findAll();
     }
 
-    @GetMapping(path="/remove")
+    @DeleteMapping(path="/remove")
     public @ResponseBody String removeArticle(@RequestParam int id) {
         articleRepository.deleteById(id);
         return "Deleted";
+    }
+
+    @PatchMapping(path="/update")
+    public @ResponseBody String updateArticle(@RequestBody Article article) {
+        articleRepository.save(article);
+        return "Updated";
     }
 }

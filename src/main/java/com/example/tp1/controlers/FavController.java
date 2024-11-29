@@ -24,9 +24,15 @@ public class FavController {
         return favRepository.findAll();
     }
 
-    @GetMapping(path="/remove")
+    @DeleteMapping(path="/remove")
     public @ResponseBody String removeFav(@RequestParam int id) {
         favRepository.deleteById(id);
         return "Deleted";
+    }
+
+    @PatchMapping(path="/update")
+    public @ResponseBody String updateFav(@RequestBody Fav fav) {
+        favRepository.save(fav);
+        return "Updated";
     }
 }

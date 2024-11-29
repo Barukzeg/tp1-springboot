@@ -24,9 +24,15 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping(path="/remove")
+    @DeleteMapping(path="/remove")
     public @ResponseBody String removeUser(@RequestParam int id) {
         userRepository.deleteById(id);
         return "Deleted";
+    }
+
+    @PatchMapping(path="/update")
+    public @ResponseBody String updateUser(@RequestBody User user) {
+        userRepository.save(user);
+        return "Updated";
     }
 }
