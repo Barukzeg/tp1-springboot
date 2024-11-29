@@ -23,4 +23,10 @@ public class UserController {
     public @ResponseBody Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    @GetMapping(path="/remove")
+    public @ResponseBody String removeUser(@RequestParam int id) {
+        userRepository.deleteById(id);
+        return "Deleted";
+    }
 }
