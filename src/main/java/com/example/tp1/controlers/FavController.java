@@ -13,6 +13,14 @@ public class FavController {
     @Autowired
     private FavRepository favRepository;
 
+    @GetMapping(path="/get")
+    public @ResponseBody Fav getFav(@RequestParam int id) {
+        if (favRepository.findById(id).isPresent()){
+            return favRepository.findById(id).get();
+        }
+        return null;
+    }
+
     @PostMapping(path="/add")
     public @ResponseBody String addNewFav (@RequestBody Fav fav) {
         favRepository.save(fav);

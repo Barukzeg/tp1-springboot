@@ -13,6 +13,14 @@ public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
 
+    @GetMapping(path="/get")
+    public @ResponseBody Article getArticle(@RequestParam int id) {
+        if (articleRepository.findById(id).isPresent()){
+            return articleRepository.findById(id).get();
+        }
+        return null;
+    }
+
     @PostMapping(path="/add")
     public @ResponseBody String addNewArticle (@RequestBody Article article) {
         articleRepository.save(article);

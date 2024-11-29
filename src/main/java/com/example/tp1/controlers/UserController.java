@@ -13,6 +13,14 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @GetMapping(path="/get")
+    public @ResponseBody User getUser(@RequestParam int id) {
+        if (userRepository.findById(id).isPresent()){
+            return userRepository.findById(id).get();
+        }
+        return null;
+    }
+
     @PostMapping(path="/add")
     public @ResponseBody String addNewUser (@RequestBody User user) {
         userRepository.save(user);
