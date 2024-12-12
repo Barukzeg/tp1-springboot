@@ -1,32 +1,29 @@
 package com.example.tp1.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 public class Article {
 
+    @Getter
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "articleId")
     private Integer id;
 
+    @Getter
+    @Setter
     private String publishedDate;
-    private Integer authorId;
+
+    @Getter
+    @Setter
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User author;
+
+    @Getter
+    @Setter
     private String content;
-
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getPublishedDate() { return publishedDate; }
-    public void setPublishedDate(String publishedDate) { this.publishedDate = publishedDate; }
-
-    public Integer getAuthorId() { return authorId; }
-    public void setAuthorId(Integer authorId) { this.authorId = authorId; }
-
-    public String getContent() { return content; }
-    public void setContent(String content) { this.content = content; }
 }
