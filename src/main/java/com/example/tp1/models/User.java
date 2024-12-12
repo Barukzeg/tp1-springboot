@@ -7,6 +7,11 @@ import lombok.Setter;
 @Entity
 public class User {
 
+    enum Role {
+        MODERATOR,
+        PUBLISHER
+    }
+
     @Getter
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -23,5 +28,6 @@ public class User {
 
     @Getter
     @Setter
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
