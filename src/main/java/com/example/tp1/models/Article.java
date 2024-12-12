@@ -1,15 +1,13 @@
 package com.example.tp1.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Article {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "articleId")
     private Integer id;
 
     private String publishedDate;

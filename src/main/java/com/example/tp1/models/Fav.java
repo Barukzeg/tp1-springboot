@@ -1,9 +1,6 @@
 package com.example.tp1.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Fav {
@@ -12,8 +9,14 @@ public class Fav {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    private Integer userId;
-    private Integer articleId;
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private User user;
+
+    @OneToOne
+    @JoinColumn(name = "articleId")
+    private Article article;
+
     private Boolean liked;
 
     public Integer getId() {
@@ -23,14 +26,14 @@ public class Fav {
         this.id = id;
     }
 
-    public Integer getUserId() { return userId; }
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public User getUser() { return user; }
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Integer getArticleId() { return articleId; }
-    public void setArticleId(Integer articleId) {
-        this.articleId = articleId;
+    public Article getArticle() { return article; }
+    public void setArticle(Article article) {
+        this.article = article;
     }
 
     public Boolean getLiked() {
