@@ -7,7 +7,7 @@ import lombok.Setter;
 @Entity
 public class User {
 
-    enum Role {
+    public enum Role {
         MODERATOR,
         PUBLISHER
     }
@@ -20,7 +20,7 @@ public class User {
 
     @Getter
     @Setter
-    private String nom;
+    private String pseudo;
 
     @Getter
     @Setter

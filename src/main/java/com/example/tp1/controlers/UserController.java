@@ -1,6 +1,7 @@
 package com.example.tp1.controlers;
 
 import com.example.tp1.models.User;
+import com.example.tp1.models.User.Role;
 import com.example.tp1.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,8 +23,12 @@ public class UserController {
     }
 
     @PostMapping(path="/add")
-    public @ResponseBody String addNewUser (@RequestBody User user) {
-        userRepository.save(user);
+    public @ResponseBody String addNewUser (@RequestParam String pseudo, @RequestParam String mdp, @RequestParam Role role) {
+        User n = new User();
+        n.setPseudo(pseudo);
+        n.setMotDePasse(mdp);
+        n.setRole(role);
+        userRepository.save(n);
         return "Saved";
     }
 
